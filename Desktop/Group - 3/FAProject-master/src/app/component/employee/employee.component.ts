@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
+import { ReportService } from '../../services/report.service';
 import { ActivatedRoute } from '@angular/router';
-import { Employee } from '../../model/employee';
+import { Report } from '../../model/report';
 
 @Component({
   selector: 'app-employee',
@@ -10,16 +10,17 @@ import { Employee } from '../../model/employee';
 })
 export class EmployeeComponent implements OnInit {
 
-  employees : Employee[];
+  reports : Report[];
 
-  constructor(private employeeService : EmployeeService,
+  constructor(private reportService : ReportService,
   private activatedRoute : ActivatedRoute) { }
 
   ngOnInit() {
-    this.employeeService.getAllEmployees().subscribe(
-      (data) => this.employees=data,
-      (err)=>this.employees=undefined
+    this.reportService.getAllReports().subscribe(
+      (data) => this.reports=data
+      // (err)=>this.employees=undefined
     );
+    console.log(this.reports);
   }
 
 }

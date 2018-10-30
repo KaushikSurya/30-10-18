@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { EmployeeSkillService } from '../services/employee-skill.service';
 
 @Component({
   selector: 'app-manager-analysis',
@@ -8,16 +9,31 @@ import { Route, Router } from '@angular/router';
 })
 export class ManagerAnalysisComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  srchValue : string;
+  field : string;
+  constructor(private router : Router,
+    private empSkillService : EmployeeSkillService) { }
 
   ngOnInit() {
   }
 
-  doSearch(value : string) {
-    if(value=='employee')
-      this.router.navigateByUrl('/empName');
-    else
-      this.router.navigateByUrl('/skillName');
+  doSearch(field : string) {
+    this.field=field+"Name";
+    this.router.navigate(["/skillName"],{queryParams:{field:this.field,srchValue:this.srchValue}});
   }
+    /*if(field && this.srchValue){
+      if(field=='employee') {
+      this.empSkillService.searchPlans(field,this.srchValue).subscribe(
+        (data) => this.plans=data,
+        (err)=>this.plans=undefined
+      );*/
+    
+      
+    /*  this.router.navigateByUrl('/empName/'+this.srchValue);
+    }
+      
+    else
+      this.router.navigateByUrl('/skillName/'+this.srchValue);
+  }*/
 
 }

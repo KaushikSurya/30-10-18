@@ -18,18 +18,16 @@
         <!-- Hover Effect Style : Demo - 5 -->
         <div class="container mt-40">
             <h3 class="text-center" ><strong>EMPLOYEES</strong></h3>
-            <div class="row mt-30"  *ngFor="let employee of employees">
-                <div class="col-md-4 col-sm-6">
+            <div class="row mt-30">
+                <div class="col-md-4 col-sm-6 mb-5" *ngFor="let report of reports">
                     <div class="box5">
                         <img src="http://bestjquery.com/tutorial/hover-effect/demo160/images/img-1.jpg" alt="">
                         <ul class="icon">
-                               
-                            <!-- <li><a href="#" class="fa fa-search"></a></li>
-                            <li><a href="#" class="fa fa-link"></a></li> -->
+                            <li><a routerLink="../empName/{{report.employeeId}}" class="fa fa-line-chart"></a></li>
                         </ul>
                         <div class="box-content">
-                            <h3 class="title">employee.employeeId</h3>
-                            <span class="post">Developer</span>
+                            <h3 class="title">{{report.employeeName}}</h3>
+                            <span class="post">{{report.employeeId}}</span>
                         </div>
                     </div>
                 </div>

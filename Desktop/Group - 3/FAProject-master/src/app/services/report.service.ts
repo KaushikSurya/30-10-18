@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response  } from '@angular/http';
 import { Observable } from 'rxjs';
-import { Employee } from '../model/employee';
+import { Report } from '../model/report';
 import { map } from 'rxjs/operators';
+import { Skill } from '../model/skill';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class ReportService {
 
   baseUrl: string;
+  baseUrl1: string;
 
   constructor(private http: Http) {
-    this.baseUrl = "http://localhost:2020/reports";
+    this.baseUrl = "http://localhost:3030/reports";
+    this.baseUrl1 = "http://localhost:3030/skills";
    }
 
    getBaseUrlById(employeeId: number): string {
@@ -29,35 +32,40 @@ export class EmployeeService {
     return new RequestOptions({ headers: headers });
   }
 
-  getAllEmployees(): Observable<Employee[]> {
+  getAllReports(): Observable<Report[]> {
     return this.http.get(this.baseUrl).pipe(
       map(data => data.json())
     );
   }
+  getAllSkills(): Observable<Skill[]> {
+    return this.http.get(this.baseUrl1).pipe(
+      map(data => data.json())
+    );
+  }
 
-  searchEmployees(field: string, value: string): Observable<Employee[]> {
+  searchReports(field: string, value: string): Observable<Report[]> {
     return this.http.get(this.getSearchUrl(field,value)).pipe(
       map(data => data.json())
     );
   }
 
-  getEmployeeById(employeeId: number): Observable<Employee> {
+  getReportById(employeeId: number): Observable<Report> {
     return this.http.get(this.getBaseUrlById(employeeId)).pipe(
       map(data => data.json())
     );
   }
 
-  /*deleteEmployeeById(pTitle: string): Observable<Response> {
+  /*deleteReportById(pTitle: string): Observable<Response> {
     return this.http.delete(this.getBaseUrlById(pTitle));
   }
 
-  addEmployee(plan: Employee): Observable<Employee> {
+  addReport(plan: Report): Observable<Report> {
     return this.http.post(this.baseUrl, JSON.stringify(plan), this.getJsonContentTypeHeader()).pipe(
       map(data => data.json())
     );
   }
 
-  updateEmployee(plan: Employee): Observable<Employee> {
+  updateReport(plan: Report): Observable<Report> {
     return this.http.put(this.baseUrl, JSON.stringify(plan), this.getJsonContentTypeHeader()).pipe(
       map(data => data.json())
     );

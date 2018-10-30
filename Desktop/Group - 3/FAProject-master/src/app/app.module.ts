@@ -19,15 +19,16 @@ import { EmployeeReportsComponent } from './employee-reports/employee-reports.co
 import { SkillReportsComponent } from './skill-reports/skill-reports.component';
 
 const routes: Routes = [
-  { path: "signup", component: SignupComponent },
-  { path: "login", component: LoginComponent },
-  { path: "employee", component: EmployeeComponent },
-  { path: "skillset", component:SkillsetComponent },
-  { path: "empdashboard", component: EmpdashboardComponent },
-  { path: "manager", component:ManagerComponent },
-  { path: "manager-analysis", component:ManagerAnalysisComponent },
-  { path: "empName", component : EmployeeReportsComponent},
-  { path: "skillName", component : SkillReportsComponent}
+  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'skillset', component:SkillsetComponent },
+  { path: 'empdashboard', component: EmpdashboardComponent },
+  { path: 'manager', component:ManagerComponent },
+  { path: 'manager-analysis', component:ManagerAnalysisComponent },
+  { path: 'empName/:employeeId', component : EmployeeReportsComponent},
+  { path: 'skillName/:field/:value', component : SkillReportsComponent},
+  { path: 'skillName', component : SkillReportsComponent}
 
 ];
 @NgModule({
