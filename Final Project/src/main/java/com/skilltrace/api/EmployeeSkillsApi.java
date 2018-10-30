@@ -43,5 +43,37 @@ public class EmployeeSkillsApi {
 		return resp;
 	}
 	
+	@GetMapping("/{field}/{srchValue}")
+	public ResponseEntity<List<EmployeeSkill>> getAllPlans (
+		@PathVariable("field") String fieldBy,
+		@PathVariable("srchValue") String searchValue)
+	{
+		ResponseEntity<List<EmployeeSkill>> resp;
+			switch(fieldBy){
+			case "employeeName":
+				List<EmployeeSkill> eben= empSkillService.getEmployeesByEmployeeName(searchValue);
+				if(eben!=null){
+					resp=new ResponseEntity<>(eben,HttpStatus.OK);}
+				else {
+					resp=new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+				break;
+				
+			case "skillName":				
+				List<EmployeeSkill> ebsn= empSkillService.getEmployeesBySkillName(searchValue);
+				if(ebsn!=null){
+					resp=new ResponseEntity<>(ebsn,HttpStatus.OK);}
+				else {
+					resp=new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+				break;
+				
+			default:
+				resp= new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				break;	
+		}
+		
+		return resp;
+	}
+	
 	
 }

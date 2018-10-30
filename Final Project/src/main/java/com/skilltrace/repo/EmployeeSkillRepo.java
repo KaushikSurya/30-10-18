@@ -11,6 +11,7 @@ import com.skilltrace.model.EmployeeSkill;
 public interface EmployeeSkillRepo extends JpaRepository<EmployeeSkill, Long>{
 
 	List<EmployeeSkill> findAllByEmployeeId(long employeeId);
+	List<EmployeeSkill> findAllByEmployeeName(String employeeName);
 	List<EmployeeSkill> findAllBySkillName(String skillName);
 
 }

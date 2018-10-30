@@ -29,4 +29,9 @@ public class EmployeeSkillServiceImpl implements EmployeeSkillService {
 		return empSkillsRepo.findAll();
 	}
 
+	@Override
+	public List<EmployeeSkill> getEmployeesByEmployeeName(String employeeName) {
+		return empSkillsRepo.findAllByEmployeeName(employeeName);
+	}
+
 }

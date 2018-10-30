@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilltrace.model.EmployeeReport;
 import com.skilltrace.service.ReportService;
-import com.skilltrace.service.SkillService;
 
 @RestController
 @CrossOrigin
@@ -22,23 +21,15 @@ public class EmployeeReportApi {
 	
 	@Autowired
 	private ReportService reportService;
-	
-	@Autowired
-	private SkillService skillService;
-
 
 	@GetMapping
 	public ResponseEntity<List<EmployeeReport>> getAllReports() {
-		//double finalScore = skillService.calculateFinalScore(employeeId);
-		//reportService.addReports();
 		return new ResponseEntity<>(reportService.getAllReports(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{employeeId}")
 	public ResponseEntity<EmployeeReport> getReportById(@PathVariable("employeeId") long employeeId) {
 		ResponseEntity<EmployeeReport> resp;
-		double finalScore = skillService.calculateFinalScore(employeeId);
-		reportService.addReports(finalScore);
 		EmployeeReport empReport = reportService.getReportById(employeeId);
 		if (empReport == null)
 			resp = new ResponseEntity<>(HttpStatus.NOT_FOUND);

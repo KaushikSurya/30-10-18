@@ -7,5 +7,5 @@ import com.skilltrace.model.EmployeeReport;
 
 @Repository
 public interface ReportRepo extends JpaRepository<EmployeeReport, Long> {
-
+	
 }

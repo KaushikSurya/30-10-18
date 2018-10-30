@@ -15,6 +15,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	public EmployeeRepo empRepo;
 	
+//	@Autowired
+//	public EmployeeRepo empSkillRepo;
+
 	@Override
 	public Employee addEmployee(Employee employee) {
 		empRepo.save(employee);
