@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilltrace.model.EmployeeSkill;
 import com.skilltrace.service.EmployeeSkillService;
-import com.skilltrace.service.ReportService;
 
 @RestController
 @CrossOrigin
@@ -22,9 +21,6 @@ public class EmployeeSkillsApi {
 	
 	@Autowired
 	private EmployeeSkillService empSkillService;
-	
-	@Autowired
-	private ReportService reportService;
 	
 	//private ReportService reportService;
 	
@@ -41,10 +37,6 @@ public class EmployeeSkillsApi {
 		if (empSkills == null)
 			resp = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		else {
-			for(int i=0;i<empSkills.size();i++) {
-				EmployeeSkill empSkill = empSkills.get(i);
-				reportService.addReport(empSkill.getEmployeeId(),empSkill.getEmployeeName());
-			}
 			resp = new ResponseEntity<>(empSkills, HttpStatus.OK);
 		}
 			

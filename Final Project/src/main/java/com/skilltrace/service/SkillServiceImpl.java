@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilltrace.model.EmployeeSkill;
 import com.skilltrace.model.Skill;
+import com.skilltrace.repo.EmployeeSkillRepo;
 import com.skilltrace.repo.SkillRepo;
 
 
@@ -16,8 +17,9 @@ public class SkillServiceImpl implements SkillService {
 
 	@Autowired
 	private SkillRepo skillRepo;
-
-	private EmployeeSkillServiceImpl empSkillService;
+	
+	@Autowired
+	private EmployeeSkillRepo empSkillRepo;
 
 	@Override
 	public Skill addSkill(Skill skill) {
@@ -48,8 +50,9 @@ public class SkillServiceImpl implements SkillService {
 		int totalLevel = 0;
 		double avgLevel = 0;
 		int totalScore = 0;
+		double avgScore = 0.0;
 		List<Skill> skills = getAllSkills();
-		List<EmployeeSkill> empSkills = empSkillService.getAllEmployeeSkills(employeeId);
+		List<EmployeeSkill> empSkills = empSkillRepo.findAllByEmployeeId(employeeId);
 		for (int i = 0; i < empSkills.size(); i++) {
 			EmployeeSkill empSkill1 = empSkills.get(i);
 			totalLevel += empSkill1.getLevel();
@@ -61,7 +64,8 @@ public class SkillServiceImpl implements SkillService {
 			}
 		}
 		avgLevel = totalLevel / empSkills.size();
-		finalScore = (2 * avgLevel + 3 * totalScore)/5;
+		avgScore = totalScore / empSkills.size();
+		finalScore = (2 * avgLevel + 3 * avgScore)/5;
 		return finalScore;
 	}
 

@@ -9,5 +9,6 @@ public interface ReportService {
 	public List<EmployeeReport> getAllReports();
 	public EmployeeReport getReportById(long skillId);
 	public EmployeeReport addReport(long employeeId, String employeeName);
+	public void addReports(double finalScore);
 	
 }
